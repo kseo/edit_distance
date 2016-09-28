@@ -5,15 +5,12 @@ import 'package:edit_distance/edit_distance.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('A group of tests', () {
-    Awesome awesome;
-
-    setUp(() {
-      awesome = new Awesome();
-    });
-
-    test('First Test', () {
-      expect(awesome.isAwesome, isTrue);
+  group('LevenshteinTest', () {
+    test('testDistance', () {
+      Levenshtein instance = new Levenshtein();
+      expect(instance.distance('My string', 'My tring'), 1);
+      expect(instance.distance('My string', 'M string2'), 2);
+      expect(instance.distance('My string', 'My \$tring'), 1);
     });
   });
 }

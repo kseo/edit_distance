@@ -5,5 +5,4 @@
 library edit_distance;
 
 export 'src/base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/levenshtein.dart';
