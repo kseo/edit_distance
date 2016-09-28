@@ -4,6 +4,7 @@
 import 'package:edit_distance/edit_distance.dart';
 
 main() {
-  var awesome = new Awesome();
-  print('awesome: ${awesome.isAwesome}');
+  Levenshtein d = new Levenshtein();
+  print(d.distance('witch', 'kitsch')); // 2
 }
+
