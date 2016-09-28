@@ -5,7 +5,7 @@ author: Kwang Yul Seo <email@example.com>
 homepage: https://github.com/kseo/edit_distance
 
 environment:
-  sdk: '>=1.0.0 <2.0.0'
+  sdk: '>=1.8.0 <2.0.0'
 
 dependencies:
   quiver_iterables: ^1.0.0
