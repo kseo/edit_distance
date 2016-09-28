@@ -13,4 +13,13 @@ void main() {
       expect(instance.distance('My string', 'My \$tring'), 1);
     });
   });
+
+  group('DamerauTest', () {
+    test('testDistance', () {
+      Damerau instance = new Damerau();
+      expect(instance.distance("ABCDEF", "ABDCEF"), 1);
+      expect(instance.distance("ABCDEF", "BACDFE"), 2);
+      expect(instance.distance("ABCDEF", "ABCDE"), 1);
+    });
+  });
 }
