@@ -8,7 +8,7 @@ import './base.dart';
 /// The Levenshtein distance, or edit distance, between two words is the
 /// minimum number of single-character edits (insertions, deletions or
 /// substitutions) required to change one word into the other.
-class Levenshtein implements StringDistance {
+class Levenshtein implements StringDistance, NormalizedStringDistance {
   @override
   int distance(String s1, String s2) {
     if (s1 == s2) {
@@ -48,5 +48,14 @@ class Levenshtein implements StringDistance {
     }
 
     return v0[s2.length];
+  }
+
+  @override
+  double normalizedDistance(String s1, String s2) {
+    int maxLength = max(s1.length, s2.length);
+    if (maxLength == 0) {
+      return 0.0;
+    }
+    return distance(s1, s2) / maxLength;
   }
 }

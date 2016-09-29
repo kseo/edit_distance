@@ -18,7 +18,8 @@ import './base.dart';
 /// is the double of the cost of an insertion or deletion.
 ///
 /// A space requirement O(m * n)!
-class LongestCommonSubsequence implements StringDistance {
+class LongestCommonSubsequence
+    implements StringDistance, NormalizedStringDistance {
   @override
   int distance(String s1, String s2) =>
       s1.length + s2.length - 2 * _length(s1, s2);
@@ -53,5 +54,14 @@ class LongestCommonSubsequence implements StringDistance {
     }
 
     return c[m][n];
+  }
+
+  @override
+  double normalizedDistance(String s1, String s2) {
+    int maxLength = max(s1.length, s2.length);
+    if (maxLength == 0) {
+      return 0.0;
+    }
+    return 1.0 - (_length(s1, s2) / maxLength);
   }
 }
