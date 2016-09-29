@@ -6,4 +6,5 @@ library edit_distance;
 
 export 'src/base.dart';
 export 'src/damerau.dart';
+export 'src/lcs.dart';
 export 'src/levenshtein.dart';

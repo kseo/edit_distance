@@ -22,4 +22,12 @@ void main() {
       expect(instance.distance("ABCDEF", "ABCDE"), 1);
     });
   });
+
+  group('LongestCommonSubsequenceTest', () {
+    test('testDistance', () {
+      LongestCommonSubsequence instance = new LongestCommonSubsequence();
+      expect(instance.distance("AGCAT", "GAC"), 4);
+      expect(instance.distance("AGCAT", "AGCT"), 1);
+    });
+  });
 }
