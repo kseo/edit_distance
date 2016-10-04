@@ -1,5 +1,7 @@
 # edit_distance
 
+[![Build Status](https://travis-ci.org/kseo/edit_distance.svg?branch=master)](https://travis-ci.org/kseo/edit_distance)
+
 Implementation of string distance algorithms.
 
 # Description
