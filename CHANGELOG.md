@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1
+
+- Turn on strong mode
+- Fix a bug: `JaroWinkler` mistakenly used / operator where ~/ is required.
+
 ## 0.2.0
 
 - Add `JaroWinkler` and `LongestCommonSubsequence`.

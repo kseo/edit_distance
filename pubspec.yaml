@@ -1,6 +1,6 @@
 name: edit_distance
 description: Implementation of string distance algorithms.
-version: 0.2.0
+version: 0.2.1
 author: Kwang Yul Seo <email@example.com>
 homepage: https://github.com/kseo/edit_distance
 
