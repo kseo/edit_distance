@@ -98,6 +98,6 @@ class JaroWinkler implements NormalizedStringDistance {
         break;
       }
     }
-    return [matches, transpositions / 2, prefix, max.length];
+    return [matches, transpositions ~/ 2, prefix, max.length];
   }
 }
