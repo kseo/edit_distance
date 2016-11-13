@@ -6,6 +6,7 @@ library edit_distance;
 
 export 'src/base.dart';
 export 'src/damerau.dart';
+export 'src/jaccard.dart';
 export 'src/jaro_winkler.dart';
 export 'src/lcs.dart';
 export 'src/levenshtein.dart';

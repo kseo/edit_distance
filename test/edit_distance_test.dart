@@ -51,4 +51,70 @@ void main() {
           0.103703, 0.000001);
     });
   });
+
+  group('Jaccard', () {
+    test('defaults', () {
+      Jaccard instance = new Jaccard();
+      // ab, [bc] vs. ab
+      expect(instance.distance('abc', 'ab'), 1);
+      expect(instance.normalizedDistance('abc', 'ab'), 0.5);
+
+      // ab, bc, [cd] vs. ab, bc
+      expect(instance.distance('abcd', 'abc'), 1);
+      approxEquals(instance.normalizedDistance('abcd', 'abc'), 0.33333);
+
+      // ab, bc, [cd], [de] vs. ab, bc
+      expect(instance.distance('abcde', 'abc'), 2);
+      approxEquals(instance.normalizedDistance('abcde', 'abc'), 0.5);
+
+      // ab, [bc], cd, de  vs.  ab, [bX], [Xc], cd, de
+      expect(instance.distance('abcde', 'abXcde'), 3);
+      expect(instance.normalizedDistance('abcde', 'abXcde'), 0.5);
+
+      // random typos
+      approxEquals(
+          instance.normalizedDistance("My string", "My tsring"), 0.545454);
+      approxEquals(
+          instance.normalizedDistance("My string", "My ntrisg"), 0.666666);
+    });
+
+    test('N-gram = 3', () {
+      Jaccard instance = new Jaccard(ngram: 3);
+      // [abc], [bcd], cde  vs.  [abX], [bXc], [Xcd], cde
+      expect(instance.distance('abcde', 'abXcde'), 5);
+      approxEquals(instance.normalizedDistance('abcde', 'abXcde'), 0.83333);
+    });
+
+    test('with padding', () {
+      Jaccard instance = new Jaccard(usePadding: true);
+      expect(instance.distance('switch words', 'words switch'), 0);
+    });
+
+    test('CombinedJaccard', () {
+      CombinedJaccard combined2 = new CombinedJaccard(ngram: 2);
+      CombinedJaccard combined3 = new CombinedJaccard(ngram: 3);
+      CombinedJaccard combined4 = new CombinedJaccard(ngram: 4);
+      CombinedJaccard combined5 = new CombinedJaccard(ngram: 5);
+      approxEquals(
+          combined2.normalizedDistance(
+              'The quick brown fox jumps over the lazy dog.',
+              'The lazy dog jumps over the quick brown fox.'),
+          0.074418);
+      approxEquals(
+          combined3.normalizedDistance(
+              'The quick brown fox jumps over the lazy dog.',
+              'The lazy dog jumps over the quick brown fox.'),
+          0.11424);
+      approxEquals(
+          combined4.normalizedDistance(
+              'The quick brown fox jumps over the lazy dog.',
+              'The lazy dog jumps over the quick brown fox.'),
+          0.148127);
+      approxEquals(
+          combined5.normalizedDistance(
+              'The quick brown fox jumps over the lazy dog.',
+              'The lazy dog jumps over the quick brown fox.'),
+          0.216193);
+    });
+  });
 }
