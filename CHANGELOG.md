@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Add `Jaccard` and `CombinedJaccard`.
+
 ## 0.2.1
 
 - Turn on strong mode
