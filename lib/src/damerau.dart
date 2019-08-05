@@ -1,7 +1,7 @@
 // Copyright (c) 2016, Kwang Yul Seo. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-import 'package:quiver_iterables/iterables.dart';
+import 'dart:math';
 
 import './base.dart';
 
@@ -62,12 +62,12 @@ class Damerau implements StringDistance {
           db = j;
         }
 
-        h[i + 1][j + 1] = min([
+        h[i + 1][j + 1] = [
           h[i][j] + cost, // substitution
           h[i + 1][j] + 1, // insertion
           h[i][j + 1] + 1, // deletion
           h[i1][j1] + (i - i1 - 1) + 1 + (j - j1 - 1)
-        ]);
+        ].reduce((acc, val) => min(acc, val));
       }
       da[s1.codeUnitAt(i - 1)] = i;
     }
