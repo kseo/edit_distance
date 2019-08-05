@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0
+
+- Update to Dart 2.x
+- Remove the quiver_iterable dependency and replace it with reduce and min from the built-in math library.
+
 ## 0.3.0
 
 - Add `Jaccard` and `CombinedJaccard`.
