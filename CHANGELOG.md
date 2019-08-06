@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Apply health suggestions to improve its score.
+
 ## 0.4.0
 
 - Update to Dart 2.x

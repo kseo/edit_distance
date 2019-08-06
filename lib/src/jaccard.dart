@@ -17,7 +17,7 @@ class Jaccard implements StringDistance, NormalizedStringDistance {
   /// Whether to introduce extra padding before and after the text.
   final bool usePadding;
 
-  Jaccard({this.ngram: 2, this.usePadding: false});
+  Jaccard({this.ngram = 2, this.usePadding = false});
 
   @override
   int distance(String s1, String s2) {
@@ -70,7 +70,7 @@ class CombinedJaccard implements NormalizedStringDistance {
   List<int> _weights;
   int _sumWeights = 0;
 
-  CombinedJaccard({int ngram: 5, bool usePadding: false}) {
+  CombinedJaccard({int ngram = 5, bool usePadding = false}) {
     _list = new List.generate(
         ngram, (i) => new Jaccard(ngram: i + 1, usePadding: usePadding));
     _weights = new List.generate(ngram, (i) => (i + 1) * (i + 1));
