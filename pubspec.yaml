@@ -5,7 +5,8 @@ author: Kwang Yul Seo <email@example.com>
 homepage: https://github.com/kseo/edit_distance
 
 environment:
-  sdk: '>=2.0.0 <3.0.0'
+  sdk: '>=2.12.0-0 <3.0.0'
 
 dev_dependencies:
-  test: ^1.0.0
+  test: ^1.16.0-nullsafety.13
+  

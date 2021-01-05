@@ -35,9 +35,9 @@ class Damerau implements StringDistance {
       }
     }
 
-    List<List<int>> h = new List<List<int>>(s1.length + 2)
-        .map((_) => new List<int>.filled(s2.length + 2, 0))
-        .toList();
+    List<List<int>> h = new List<List<int>>.generate(s1.length + 2,
+        (_) => new List<int>.filled(s2.length + 2, 0, growable: false),
+        growable: false);
 
     for (var i = 0; i <= s1.length; i++) {
       h[i + 1][0] = inf;
@@ -53,7 +53,7 @@ class Damerau implements StringDistance {
       int db = 0;
 
       for (var j = 1; j <= s2.length; j++) {
-        int i1 = da[s2.codeUnitAt(j - 1)];
+        int i1 = da[s2.codeUnitAt(j - 1)]!;
         int j1 = db;
 
         int cost = 1;
