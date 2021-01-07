@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.0-nullsafety.0
+
+- Null safety pre-release (Breaking change)
+- Pendantic linting
+
 ## 0.4.1
 
 - Apply health suggestions to improve its score.
