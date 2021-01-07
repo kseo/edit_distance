@@ -24,8 +24,8 @@ class Levenshtein implements StringDistance, NormalizedStringDistance {
     }
 
     List<int> v0 =
-        new List<int>.generate(s2.length + 1, (i) => i, growable: false);
-    List<int> v1 = new List<int>.filled(s2.length + 1, 0, growable: false);
+        List<int>.generate(s2.length + 1, (i) => i, growable: false);
+    List<int> v1 = List<int>.filled(s2.length + 1, 0, growable: false);
     List<int> vtemp;
 
     for (var i = 0; i < s1.length; i++) {

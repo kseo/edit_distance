@@ -4,7 +4,7 @@
 import 'package:edit_distance/edit_distance.dart';
 
 void main() {
-  Levenshtein d = new Levenshtein();
+  var d = Levenshtein();
   print(d.distance('witch', 'kitsch')); // 2
   print(d.normalizedDistance('witch', 'kitsch')); // 0.3333333333333333
 }

@@ -21,7 +21,7 @@ class Damerau implements StringDistance {
   int distance(String s1, String s2) {
     int inf = s1.length + s2.length;
 
-    Map<int, int> da = new Map<int, int>();
+    Map<int, int> da = <int, int>{};
 
     for (var d = 0; d < s1.length; d++) {
       if (!da.containsKey(s1.codeUnitAt(d))) {
@@ -35,8 +35,8 @@ class Damerau implements StringDistance {
       }
     }
 
-    List<List<int>> h = new List<List<int>>.generate(s1.length + 2,
-        (_) => new List<int>.filled(s2.length + 2, 0, growable: false),
+    List<List<int>> h = List<List<int>>.generate(s1.length + 2,
+        (_) => List<int>.filled(s2.length + 2, 0, growable: false),
         growable: false);
 
     for (var i = 0; i <= s1.length; i++) {

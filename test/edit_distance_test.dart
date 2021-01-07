@@ -5,9 +5,7 @@ import 'package:edit_distance/edit_distance.dart';
 import 'package:test/test.dart';
 
 void approxEquals(num actual, num expected, [num? tolerance = null]) {
-  if (tolerance == null) {
-    tolerance = (expected / 1e4).abs();
-  }
+  tolerance ??= (expected / 1e4).abs();
   // Note: use !( <= ) rather than > so we fail on NaNs
   if ((expected - actual).abs() <= tolerance) return;
 
@@ -18,7 +16,7 @@ void approxEquals(num actual, num expected, [num? tolerance = null]) {
 void main() {
   group('LevenshteinTest', () {
     test('testDistance', () {
-      Levenshtein instance = new Levenshtein();
+      Levenshtein instance = Levenshtein();
       expect(instance.distance('My string', 'My tring'), 1);
       expect(instance.distance('My string', 'M string2'), 2);
       expect(instance.distance('My string', 'My \$tring'), 1);
@@ -27,34 +25,34 @@ void main() {
 
   group('DamerauTest', () {
     test('testDistance', () {
-      Damerau instance = new Damerau();
-      expect(instance.distance("ABCDEF", "ABDCEF"), 1);
-      expect(instance.distance("ABCDEF", "BACDFE"), 2);
-      expect(instance.distance("ABCDEF", "ABCDE"), 1);
+      Damerau instance = Damerau();
+      expect(instance.distance('ABCDEF', 'ABDCEF'), 1);
+      expect(instance.distance('ABCDEF', 'BACDFE'), 2);
+      expect(instance.distance('ABCDEF', 'ABCDE'), 1);
     });
   });
 
   group('LongestCommonSubsequenceTest', () {
     test('testDistance', () {
-      LongestCommonSubsequence instance = new LongestCommonSubsequence();
-      expect(instance.distance("AGCAT", "GAC"), 4);
-      expect(instance.distance("AGCAT", "AGCT"), 1);
+      LongestCommonSubsequence instance = LongestCommonSubsequence();
+      expect(instance.distance('AGCAT', 'GAC'), 4);
+      expect(instance.distance('AGCAT', 'AGCT'), 1);
     });
   });
 
   group('JaroWinklerTest', () {
     test('testDistance', () {
-      JaroWinkler instance = new JaroWinkler();
-      approxEquals(instance.normalizedDistance("My string", "My tsring"),
+      JaroWinkler instance = JaroWinkler();
+      approxEquals(instance.normalizedDistance('My string', 'My tsring'),
           0.025925, 0.000001);
-      approxEquals(instance.normalizedDistance("My string", "My ntrisg"),
+      approxEquals(instance.normalizedDistance('My string', 'My ntrisg'),
           0.103703, 0.000001);
     });
   });
 
   group('Jaccard', () {
     test('defaults', () {
-      Jaccard instance = new Jaccard();
+      Jaccard instance = Jaccard();
       // ab, [bc] vs. ab
       expect(instance.distance('abc', 'ab'), 1);
       expect(instance.normalizedDistance('abc', 'ab'), 0.5);
@@ -73,28 +71,28 @@ void main() {
 
       // random typos
       approxEquals(
-          instance.normalizedDistance("My string", "My tsring"), 0.545454);
+          instance.normalizedDistance('My string', 'My tsring'), 0.545454);
       approxEquals(
-          instance.normalizedDistance("My string", "My ntrisg"), 0.666666);
+          instance.normalizedDistance('My string', 'My ntrisg'), 0.666666);
     });
 
     test('N-gram = 3', () {
-      Jaccard instance = new Jaccard(ngram: 3);
+      Jaccard instance = Jaccard(ngram: 3);
       // [abc], [bcd], cde  vs.  [abX], [bXc], [Xcd], cde
       expect(instance.distance('abcde', 'abXcde'), 5);
       approxEquals(instance.normalizedDistance('abcde', 'abXcde'), 0.83333);
     });
 
     test('with padding', () {
-      Jaccard instance = new Jaccard(usePadding: true);
+      Jaccard instance = Jaccard(usePadding: true);
       expect(instance.distance('switch words', 'words switch'), 0);
     });
 
     test('CombinedJaccard', () {
-      CombinedJaccard combined2 = new CombinedJaccard(ngram: 2);
-      CombinedJaccard combined3 = new CombinedJaccard(ngram: 3);
-      CombinedJaccard combined4 = new CombinedJaccard(ngram: 4);
-      CombinedJaccard combined5 = new CombinedJaccard(ngram: 5);
+      CombinedJaccard combined2 = CombinedJaccard(ngram: 2);
+      CombinedJaccard combined3 = CombinedJaccard(ngram: 3);
+      CombinedJaccard combined4 = CombinedJaccard(ngram: 4);
+      CombinedJaccard combined5 = CombinedJaccard(ngram: 5);
       approxEquals(
           combined2.normalizedDistance(
               'The quick brown fox jumps over the lazy dog.',

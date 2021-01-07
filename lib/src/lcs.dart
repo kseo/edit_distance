@@ -32,8 +32,8 @@ class LongestCommonSubsequence
     List<int> x = s1.codeUnits;
     List<int> y = s2.codeUnits;
 
-    List<List<int>> c = new List<List<int>>.generate(
-        m + 1, (_) => new List<int>.filled(n + 1, 0, growable: false));
+    List<List<int>> c = List<List<int>>.generate(
+        m + 1, (_) => List<int>.filled(n + 1, 0, growable: false));
 
     for (var i = 0; i <= m; i++) {
       c[i][0] = 0;

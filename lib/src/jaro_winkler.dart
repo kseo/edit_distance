@@ -18,12 +18,12 @@ const jwCoef = 0.1;
 /// detection) (Winkler, 1990). It returns a value in the interval [0.0, 1.0].
 /// The distance is computed as 1 - Jaro-Winkler similarity.
 class JaroWinkler implements NormalizedStringDistance {
-  /// The current value of the threshold used for adding the Winkler bonus.
-  final double threshold;
-
   /// Creates an instance with given threshold to determine when Winkler bonus
   /// should be used.
   JaroWinkler([this.threshold = defaultThreshold]);
+
+  /// The current value of the threshold used for adding the Winkler bonus.
+  final double threshold;
 
   @override
   double normalizedDistance(String s1, String s2) => 1.0 - _similarity(s1, s2);
@@ -53,8 +53,8 @@ class JaroWinkler implements NormalizedStringDistance {
       min = s1;
     }
     int range = math.max(max.length ~/ 2 - 1, 0);
-    List<int> matchIndexes = new List<int>.filled(min.length, -1);
-    List<bool> matchFlags = new List<bool>.filled(max.length, false);
+    List<int> matchIndexes = List<int>.filled(min.length, -1);
+    List<bool> matchFlags = List<bool>.filled(max.length, false);
     int matches = 0;
     for (var mi = 0; mi < min.length; mi++) {
       int c1 = min.codeUnitAt(mi);
@@ -70,8 +70,8 @@ class JaroWinkler implements NormalizedStringDistance {
         }
       }
     }
-    List<int> ms1 = new List<int>.filled(matches, 0, growable: false);
-    List<int> ms2 = new List<int>.filled(matches, 0, growable: false);
+    List<int> ms1 = List<int>.filled(matches, 0, growable: false);
+    List<int> ms2 = List<int>.filled(matches, 0, growable: false);
     for (var i = 0, si = 0; i < min.length; i++) {
       if (matchIndexes[i] != -1) {
         ms1[si] = min.codeUnitAt(i);

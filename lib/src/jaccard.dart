@@ -11,13 +11,13 @@ import './base.dart';
 /// Jaccard distance is calculated based on these sets.
 /// https://en.wikipedia.org/wiki/Jaccard_index
 class Jaccard implements StringDistance, NormalizedStringDistance {
+  Jaccard({this.ngram = 2, this.usePadding = false});
+
   /// The size of the N-character sequences.
   final int ngram;
 
   /// Whether to introduce extra padding before and after the text.
   final bool usePadding;
-
-  Jaccard({this.ngram = 2, this.usePadding = false});
 
   @override
   int distance(String s1, String s2) {
@@ -51,7 +51,7 @@ class Jaccard implements StringDistance, NormalizedStringDistance {
   }
 
   Set<String> _split(String s) {
-    Set<String> set = new Set();
+    Set<String> set = <String>{};
     if (s.length <= ngram) {
       set.add(s);
     } else {
@@ -66,16 +66,16 @@ class Jaccard implements StringDistance, NormalizedStringDistance {
 /// Combines multiple Jaccard normalized edit distance of N=1, N=2, N=3, ...
 /// The individual distances are weighed by N^2.
 class CombinedJaccard implements NormalizedStringDistance {
-  List<Jaccard> _list;
-  List<int> _weights;
-  int _sumWeights = 0;
-
   CombinedJaccard({int ngram = 5, bool usePadding = false}): 
-    _list = new List.generate(
-        ngram, (i) => new Jaccard(ngram: i + 1, usePadding: usePadding)),
-    _weights = new List.generate(ngram, (i) => (i + 1) * (i + 1)) {
+    _list = List.generate(
+        ngram, (i) => Jaccard(ngram: i + 1, usePadding: usePadding)),
+    _weights = List.generate(ngram, (i) => (i + 1) * (i + 1)) {
     _sumWeights = _weights.fold(0, (a, b) => a + b);
   }
+
+  final List<Jaccard> _list;
+  final List<int> _weights;
+  int _sumWeights = 0;
 
   @override
   double normalizedDistance(String s1, String s2) {
