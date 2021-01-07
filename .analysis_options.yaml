@@ -1,7 +1,4 @@
-# This file allows you to configure the Dart analyzer.
-#
-# The commented part below is just for inspiration. Read the guide here:
-# https://github.com/dart-lang/sdk/tree/master/pkg/analyzer#configuring-the-analyzer
+include: package:pedantic/analysis_options.yaml
 
 analyzer:
   strong-mode: true
@@ -9,12 +6,13 @@ analyzer:
 #     - path/to/excluded/files/**
 linter:
   rules:
-    - always_declare_return_types
-    - camel_case_types
-    - empty_constructor_bodies
-    - annotate_overrides
-    - avoid_init_to_null
-    - constant_identifier_names
-    - slash_for_doc_comments
-    - sort_constructors_first
-    - unnecessary_brace_in_string_interp
+    always_declare_return_types: true
+    camel_case_types: true
+    empty_constructor_bodies: true
+    annotate_overrides: true
+    constant_identifier_names: true
+    slash_for_doc_comments: true
+    sort_constructors_first: true
+    unnecessary_brace_in_string_interp: true
+    omit_local_variable_types: false
+    avoid_init_to_null: false

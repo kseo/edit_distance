@@ -1,6 +1,6 @@
 name: edit_distance
 description: Implementation of string distance algorithms for advanced text comparison.
-version: 0.4.1
+version: 0.5.0-nullsafety.0
 author: Kwang Yul Seo <email@example.com>
 homepage: https://github.com/kseo/edit_distance
 
@@ -9,4 +9,4 @@ environment:
 
 dev_dependencies:
   test: ^1.16.0-nullsafety.13
-  
+  pedantic: ^1.9.0
