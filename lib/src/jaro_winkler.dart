@@ -70,8 +70,8 @@ class JaroWinkler implements NormalizedStringDistance {
         }
       }
     }
-    List<int> ms1 = new List<int>(matches);
-    List<int> ms2 = new List<int>(matches);
+    List<int> ms1 = new List<int>.filled(matches, 0, growable: false);
+    List<int> ms2 = new List<int>.filled(matches, 0, growable: false);
     for (var i = 0, si = 0; i < min.length; i++) {
       if (matchIndexes[i] != -1) {
         ms1[si] = min.codeUnitAt(i);

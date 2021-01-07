@@ -70,10 +70,10 @@ class CombinedJaccard implements NormalizedStringDistance {
   List<int> _weights;
   int _sumWeights = 0;
 
-  CombinedJaccard({int ngram = 5, bool usePadding = false}) {
+  CombinedJaccard({int ngram = 5, bool usePadding = false}): 
     _list = new List.generate(
-        ngram, (i) => new Jaccard(ngram: i + 1, usePadding: usePadding));
-    _weights = new List.generate(ngram, (i) => (i + 1) * (i + 1));
+        ngram, (i) => new Jaccard(ngram: i + 1, usePadding: usePadding)),
+    _weights = new List.generate(ngram, (i) => (i + 1) * (i + 1)) {
     _sumWeights = _weights.fold(0, (a, b) => a + b);
   }
 

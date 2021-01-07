@@ -4,7 +4,7 @@
 import 'package:edit_distance/edit_distance.dart';
 import 'package:test/test.dart';
 
-void approxEquals(num actual, num expected, [num tolerance = null]) {
+void approxEquals(num actual, num expected, [num? tolerance = null]) {
   if (tolerance == null) {
     tolerance = (expected / 1e4).abs();
   }
